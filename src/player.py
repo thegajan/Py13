@@ -1,5 +1,4 @@
-from deck import Card
-from deck import Deck
+import deck
 
 
 class Player:
@@ -17,9 +16,17 @@ class Player:
   def num_cards(self):
     return len(self.hand)
 
+  def low_card(self):
+    low_card = deck.Card("Hearts", 2)
+    for card in self.hand:
+      low_card = deck.compare_cards(low_card, card) 
+    return low_card
+
 
 if __name__ == "__main__":
-  deck = Deck()
+  d = deck.Deck()
   player = Player("Gajan")
-  player.draw_card(deck)
+  player.draw_card(d)
   player.show_hand()
+  player_low_card = player.low_card()
+  player_low_card.peek()
