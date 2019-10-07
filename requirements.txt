@@ -1,11 +1,1 @@
-configobj==5.0.6
-pycairo==1.16.2
-pycrypto==2.6.1
-pygobject==3.26.1
-pyparted==3.11.1
-python-apt==1.6.4
-python-xlib==0.20
-pyxdg==0.25
-ranger==1.8.1
-setproctitle==1.1.10
-six==1.11.0
+pkg-resources==0.0.0
