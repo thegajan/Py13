@@ -7,8 +7,12 @@ class Player:
     self.hand = []
     
   def show_hand(self):
+    print("Hand:")
+    i = 1
     for card in self.hand:
+      print(str(i) + ". ", end = "")
       card.peek()
+      i += 1
 
   def draw_card(self, deck):
     self.hand.append(deck.draw_card())
@@ -21,6 +25,22 @@ class Player:
     for card in self.hand:
       low_card = deck.compare_cards(low_card, card) 
     return low_card
+
+  def valid_move(self, played_cards, card_stack):
+    if card_stack == []:
+      return True
+    if len(played_cards) == len(card_stack):
+      if deck.compare_cards(played_cards[0], card_stack[0]) == card_stack[0]:
+        return True
+    return False
+
+  def play_single(self, card, card_stack):
+    player_card = [self.hand[card]]
+    #print(player_card.peek())
+    if self.valid_move(player_card, card_stack):
+      self.hand.remove(player_card[0])
+      return player_card
+    return False
 
 
 if __name__ == "__main__":
