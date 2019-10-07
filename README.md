@@ -21,5 +21,4 @@ A standard deck of fifty-two playing cards is used. The ranking of the cards fro
   * Triple ("trio", "trips"): A combination of exactly three cards of rank. They can only be defeated by a triple of a higher rank. If a player plays triple 4♠ 4♦ 4♥, then another player must have a 5♠ 5♦ 5♣ or higher to defeat it. Triples are difficult to defeat because they require the sacrifice of 3 cards
   * Run ("sequence", "straight"): A combination of at least three cards that are in a numerical sequence. The order of the cards must be in a consecutive order. The highest possible ending card in a straight is the A, and the lowest beginning card is the 3.
 
-### Rules were found on [wikipedia](https://en.wikipedia.org/wiki/Ti%E1%BA%BFn_l%C3%AAn) and can be accessed for
-further detail.
+##### Rules were found on [wikipedia](https://en.wikipedia.org/wiki/Ti%E1%BA%BFn_l%C3%AAn) and can be accessed for further detail.
