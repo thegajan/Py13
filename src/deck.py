@@ -56,7 +56,7 @@ def compare_cards(a, b):
 
 #return the high card in a card set
 def high_card(card_set):                                           
-  high_card = deck.Card("Spades", 3)                                    
+  high_card = Card("Spades", 3)                                    
   for card in card_set:                                                 
     low_card = deck.compare_cards(high_card, card)                      
     high_card = high_card if low_card == card else card                 
@@ -88,6 +88,8 @@ class Deck:
       for value in range(1, 14):
         self.cards.append(Card(suit, value))
 
+  #shuffle cards by itereating from the back of the list and selecting a card
+  #in the other half and swapping positions
   def shuffle(self):
     for i in range(len(self.cards) - 1, 0, -1):
       r = random.randint(0, i)

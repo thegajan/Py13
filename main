@@ -10,6 +10,7 @@ def main():
     num_players = int(input("Enter number of players: "))
     if num_players < 5 and num_players > 1:
       k = killer.Killer(num_players)
+      break
     else:
       print("Invalid number of players. Minimum number of players is 2." + \
         "Maximum number of players is 4.")
