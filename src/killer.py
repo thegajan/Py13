@@ -92,7 +92,21 @@ class Killer:
       self.num_passes = 0
     elif move == 2:
       #play double
-      pass
+      cards = []
+      while True:
+        cards = input("Which cards? Separate by spaces. ")
+        cards = [int(i)-1 for i in cards.split()]
+        for card in cards:
+          if card > self.player_turn.num_cards() or card < 0:
+            print("Invalid cards.")
+        result = self.player_turn.play_double(cards, self.card_stack)
+        if result is not False:
+          self.card_stack = result
+          break
+        else:
+          print("Invalid move.")
+      self.change_player()
+      self.num_passes = 0
     elif move == 3:
       #play triple
       pass
@@ -119,6 +133,9 @@ class Killer:
     self.player_order()
     self.player_turn = self.players[0]
     while(self.game_over() == False):
+      if self.num_passes == self.num_players - 1:
+        self.card_stack = []
+        print("Board reset. All plays are legal.")
       self.print_board()
       self.player_move()
     print("Game Over!")
