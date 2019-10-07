@@ -26,19 +26,19 @@ class Player:
       low_card = deck.compare_cards(low_card, card) 
     return low_card
 
-  def valid_single(self, player_card, card_stack):
+  def valid_single(self, player_card, card_stack, prev_move):
     if card_stack == []:
       return True
     if prev_move == 1:
-      if deck.compare_cards(player_card, card_stack) == card_stack:
+      if deck.compare_cards(player_card, card_stack[0]) == card_stack[0]:
         return True
     return False
   
   def play_single(self, card, card_stack, prev_move):
-    player_card = [self.hand[card]]
+    player_card = self.hand[card]
     if self.valid_single(player_card, card_stack, prev_move):
-      self.hand.remove(player_card[0])
-      return player_card
+      self.hand.remove(player_card)
+      return [player_card]
     return False
 
   def valid_double_triple(self, player_cards, card_stack):
