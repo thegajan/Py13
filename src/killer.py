@@ -1,5 +1,5 @@
-import src.deck
-import src.player
+import src.deck as deck
+import src.player as player
 import random
 
 
