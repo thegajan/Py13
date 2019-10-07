@@ -57,7 +57,7 @@ class Player:
       return player_card
     return False
 
-  def play_double(self, cards, card_stack):
+  def play_double_triple(self, cards, card_stack):
     player_cards = [self.hand[card] for card in cards]
     if self.valid_move(player_cards, card_stack):
       for card in player_cards:
