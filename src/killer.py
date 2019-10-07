@@ -1,10 +1,6 @@
-import deck
-import player
+import src.deck
+import src.player
 import random
-
-
-card_order = [2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3]
-suit_order = ["Hearts", "Diamonds", "Clubs", "Spades"]
 
 
 class Killer:
@@ -145,7 +141,6 @@ class Killer:
           return
       else:
         print("Invalid move. Select an option between 1-5.")
-
 
   def print_board(self):
     if self.card_stack == []:

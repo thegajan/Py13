@@ -1,4 +1,4 @@
-import deck
+import src.deck
 
 
 class Player:
