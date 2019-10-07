@@ -1,7 +1,7 @@
 Py13
 ========
 ## Description
-This is a Python implementation of the Vietnamese card game Killer 13 (Tiến lên).
+This is a Python implementation of the Vietnamese card game Killer 13 (Tiến lên). This project was written in Python because of its speed for quickly prototyping new ideas. No additional libararies were used in the making of this project. Brief tests were made in each module as if they were run individually. This card game was implemented with object oriented architecture in mind because of how games are often made up of different object interacting with each other. 
 
 ## Setup
 1. To play the game verify that you have Python 3 installed and it is in your PATH. 
