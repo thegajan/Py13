@@ -16,7 +16,8 @@ card_hierarchy = {
   4: 1,
   5: 2,
   6: 3,
-  7: 4, 8: 5,
+  7: 4, 
+  8: 5,
   9: 6,
   10: 7,
   11: 8,
@@ -51,6 +52,15 @@ def compare_cards(a, b):
       return a
   else:
     return a
+
+
+#return the high card in a card set
+def high_card(card_set):                                           
+  high_card = deck.Card("Spades", 3)                                    
+  for card in card_set:                                                 
+    low_card = deck.compare_cards(high_card, card)                      
+    high_card = high_card if low_card == card else card                 
+  return high_card 
 
 
 #instance of a card

@@ -13,6 +13,7 @@ class Killer:
     self.players = []
     self.num_passes = 0 
     self.card_stack = []
+    self.prev_move = 0
     self.player_turn = None
     self.deck = deck.Deck()
     self.start_game()
@@ -80,7 +81,8 @@ class Killer:
       while True:
         card = int(input("Which card? "))
         if card < self.player_turn.num_cards() + 1 and card > 0:
-          result = self.player_turn.play_single(card-1, self.card_stack)
+          result = self.player_turn.play_single(card-1, self.card_stack, \
+            self.prev_move)
           if result is not False:
             self.card_stack = result
             break
@@ -90,6 +92,7 @@ class Killer:
           print("Invalid card.")
       self.change_player()
       self.num_passes = 0
+      self.prev_move = 1
     elif move == 2:
       #play double
       cards = []
@@ -107,6 +110,7 @@ class Killer:
           print("Invalid move.")
       self.change_player()
       self.num_passes = 0
+      self.prev_move = 2
     elif move == 3:
       #play triple
       cards = []
@@ -124,9 +128,26 @@ class Killer:
           print("Invalid move.")
       self.change_player()
       self.num_passes = 0
+      self.prev_move = 3
     elif move == 4:
       #play run
-      pass 
+      cards = []
+      while True:
+        cards = input("Which cards? Separate by spaces. ")
+        cards = [int(i)-1 for i in cards.split()]
+        for card in cards:
+          if card > self.player_turn.num_cards() or card < 0:
+            print("Invalid cards.")
+        result = self.player_turn.play_run(cards, self.card_stack, \
+          self.prev_move)
+        if result is not False:
+          self.card_stack = result
+          break
+        else:
+          print("Invalid move.")
+      self.change_player()
+      self.num_passes = 0
+      self.prev_move = 4
     elif move == 5:
       #play pass
       self.change_player()

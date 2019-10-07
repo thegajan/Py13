@@ -26,44 +26,72 @@ class Player:
       low_card = deck.compare_cards(low_card, card) 
     return low_card
 
-  def valid_move(self, played_cards, card_stack):
+  def valid_single(self, player_card, card_stack):
     if card_stack == []:
       return True
-    if len(played_cards) == len(card_stack) == 1:
-      if deck.compare_cards(played_cards[0], card_stack[0]) == card_stack[0]:
+    if prev_move == 1:
+      if deck.compare_cards(player_card, card_stack) == card_stack:
         return True
-    elif len(played_cards) == len(card_stack):
-      card_value_set = set()
-      for card in played_cards:
-        card_value_set.add(card.value)
-      if len(card_value_set) == 1:
-        def play_high_card(card_set):
-          high_card = deck.Card("Spades", 3)
-          for card in card_set:
-            low_card = deck.compare_cards(high_card, card) 
-            high_card = high_card if low_card == card else card  
-          return high_card
-        player_high_card = play_high_card(played_cards)
-        card_stack_high_card = play_high_card(card_stack)
+    return False
+  
+  def play_single(self, card, card_stack, prev_move):
+    player_card = [self.hand[card]]
+    if self.valid_single(player_card, card_stack, prev_move):
+      self.hand.remove(player_card[0])
+      return player_card
+    return False
+
+  def valid_double_triple(self, player_cards, card_stack):
+    card_value_set = set()
+    for card in player_cards:
+      card_value_set.add(card.value)
+    if len(card_value_set) == 1:
+      if card_stack == []:
+        return True
+      elif len(played_cards) == len(card_stack):
+        player_high_card = deck.high_card(played_cards)
+        card_stack_high_card = deck.high_card(card_stack)
         high_card = deck.compare_cards(player_high_card, card_stack_high_card)
         if high_card == card_stack_high_card:
           return True
     return False
 
-  def play_single(self, card, card_stack):
-    player_card = [self.hand[card]]
-    if self.valid_move(player_card, card_stack):
-      self.hand.remove(player_card[0])
-      return player_card
-    return False
-
   def play_double_triple(self, cards, card_stack):
     player_cards = [self.hand[card] for card in cards]
-    if self.valid_move(player_cards, card_stack):
+    if self.valid_double_triple(player_cards, card_stack):
       for card in player_cards:
         self.hand.remove(card)
       return player_cards
     return False
+
+  def valid_run(self, player_cards, card_stack, prev_move):
+    card_values = [card.value for card in player_cards]
+    if len(card_values) < 3:
+      return False
+    if 2 in card_values:
+      return False
+    if 1 in card_values:
+      one_index = card_values.index(1)
+      card_values[one_index] = 14
+    if sorted(card_values) == list(range(min(card_values), max(card_values)+1)):
+      if card_stack == []:
+        return True
+      elif prev_move == 4 and len(player_cards) == len(card_stack):
+        player_high_card = deck.high_card(player_cards)
+        card_stack_high_card = deck.high_card(card_stack)
+        low_card = deck.compare_cards(player_high_card, card_stack_high_card)
+        if low_card == card_stack_high_card:
+          return True
+    return False
+  
+  def play_run(self, cards, card_stack, prev_move):
+    player_cards = [self.hand[card] for card in cards]
+    if self.valid_run(player_cards, card_stack, prev_move):
+      for card in player_cards:
+        self.hand.remove(card)
+      return player_cards
+    return False
+      
 
 if __name__ == "__main__":
   d = deck.Deck()
